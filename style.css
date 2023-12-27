@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -6,6 +5,90 @@
     font-family: "Liberation Mono";
 }
 
-.carousel{
-    white-space: nowrap;
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: slategray;
+    padding: 0 20px;
 }
+
+.wrapper{
+    max-width: 1200px;
+    position: relative;
+}
+
+.wrapper i {
+    top: 50%;
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    line-height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transform: translateY(-50%);
+}
+
+.wrapper i:first-child{
+    left: -20px;
+}
+
+.wrapper i:last-child{
+    right: -20px;
+}
+
+.carousels{
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 0;
+}
+
+.carousels img{
+    height: 800px;
+    width: 100%;
+    object-fit: cover;
+    object-position:center;
+}
+
+.circles{
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.circle{
+    border-radius: 50%;
+    background-color: honeydew;
+    border: 2px skyblue solid;
+    width: 24px;
+    height: 24px;
+    margin: 20px;
+    cursor: pointer;
+}
+ .circle.active{
+    background-color: slategray;
+}
+
+ @keyframes next1 {
+     from{
+         left: 0%
+     }
+     to{
+         left: -100%;
+     }
+ }
+
+@keyframes next2 {
+    from{
+        left: 100%
+    }
+    to{
+        left: 0%
+    }
+}
+
