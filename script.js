@@ -7,6 +7,12 @@ let carousels = document.querySelectorAll('.carousel');
 let circles = document.querySelectorAll('.circle')
 let currentCarousel = 1;
 
+
+let myInterval= setInterval(()=>{
+    slideNext();
+},3000);
+
+
 let navigation = function (nav){
     currentCarousel = nav + 1
     carousels.forEach((carousel)=>{
@@ -24,26 +30,36 @@ let navigation = function (nav){
 circles.forEach((btn,i) =>{
     btn.addEventListener('click', ()=>{
         navigation(i);
+        if(myInterval) {
+            clearInterval(myInterval);
+        }
+        myInterval = setInterval(() => {
+            slideNext()
+        }, 3000)
     })
 })
-
-/*
-arrowIcons.forEach(icon=>{
-    icon.addEventListener("click", ()=>{
-        carousel.scrollLeft += icon.id === "left" ? -firstImgWidth : firstImgWidth;
-    })
-})
-*/
-
-
-/*setInterval(()=>{carousel.scrollLeft+=1200 },3000)*/;
-
 
 let next = document.getElementById('right');
 let prev = document.getElementById('left');
 
-next.addEventListener('click', slideNext);
-prev.addEventListener('click', slidePrev);
+next.addEventListener('click', () => {
+    if(myInterval) {
+        clearInterval(myInterval);
+    }
+    myInterval = setInterval(() => {
+        slideNext()
+    }, 3000)
+    slideNext()
+});
+prev.addEventListener('click', ()=>{
+    if(myInterval) {
+        clearInterval(myInterval);
+    }
+    myInterval = setInterval(() => {
+        slideNext()
+    }, 3000)
+    slidePrev();
+});
 function slideNext(){
     carousel.scrollLeft += firstImgWidth
     carousels.forEach((carousel)=>{
@@ -63,8 +79,31 @@ function slideNext(){
     circles[currentCarousel - 1].classList.add('active');
 }
 
+// function autoNext(){
+//     carousel.scrollLeft += firstImgWidth
+//     carousels.forEach((carousel)=>{
+//         carousel.classList.remove('active');
+//
+//         circles.forEach((circle)=>{
+//             circle.classList.remove('active')
+//         });
+//     });
+//     if(currentCarousel > carousels.length - 1){
+//         currentCarousel = 1;
+//         carousel.scrollLeft = 0;
+//     } else {
+//         currentCarousel++
+//     }
+//     carousels[currentCarousel - 1].classList.add('active');
+//     circles[currentCarousel - 1].classList.add('active');
+// }
+
+// if(next || prev){
+//     clearInterval(myInterval);
+//     myInterval()
+// }
+
 function slidePrev(){
-    debugger;
     carousels.forEach((carousel)=>{
         carousel.classList.remove('active');
 
